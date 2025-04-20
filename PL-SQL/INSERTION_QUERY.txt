@@ -1,0 +1,40 @@
+
+insert into ElectionOfficials (OfficialID, Name, Designation, ContactNumber) 
+values (1, 'Ali', 'Returning Officer', '0327-7819382');
+
+insert into Constituencies (ConstituencyID, ConstituencyName, Province, District, ReturningOfficer) 
+values (1, 'FSD-4', 'Punjab', 'Faislabad', 1);
+
+insert into PollingStations (PollingStationID, ConstituencyID, PollingStationName, Location, Presiding, AsistPresiding, PollingOfficer) 
+values (1, 1, 'Loonawala', 'Loonawala near fast', 1, 2, 3);
+
+
+insert into Voters (VoterID, Name, FName, CNIC, Address, PollingStationID) 
+values (1, 'Ahmad', 'ali', '1234567', 'Loonawala', 1);
+
+insert into PoliticalParties (PartyID, PartyName, Leader, Headquarters, Symbol) 
+values (1, 'PPP', 'Bhutto', 'Karachi', empty_blob());
+
+
+insert into Candidates (CandidateID, Name, PartyID, PartyAffiliation, ElectionType, ConstituencyID) 
+values (1, 'Ahmad', 1, 'PPP', 'General Election', 1);
+
+
+insert into Form45 (PollingStationID, CandidateID, VotesReceived, RejectedVotes, PollingOfficer) 
+values (1, 1, 100, 5, 3);
+
+
+insert into Form47 (ConstituencyID, PollingStationID, CandidateID, TotalVotes, ReturningOfficer) 
+values (1, 1, 1, 100, 1);
+
+insert into ElectionSchedule (ElectionID, ElectionType, ElectionDate, NominationDeadline, PollingDate) 
+values (1, 'General Election', to_date('2022-01-01', 'YYYY-MM-DD'),to_date('2022-02-01', 'YYYY-MM-DD'), to_date('2022-03-01', 'YYYY-MM-DD'));
+
+insert into Votes (VoteID, VoterID, CandidateID, PollingStationID, VoteDate, VoteIntegrity) 
+values (1, 1, 1, 1, to_date('2024-03-01', 'YYYY-MM-DD'), 1);
+
+insert into ElectionResults (ResultID, ElectionID, ConstituencyID, PollingStationID, CandidateID, VotesReceived, PercentageOfVotes) 
+values (1, 1, 1, 1, 1, 100, 50.00);
+
+insert into OnlineVotes (VoteID, VoterID, CandidateID, VoteDate, IP_Address, VoteIntegrity) 
+values (1, 1, 1, to_date('2022-03-01', 'YYYY-MM-DD'), '192.16', 1);

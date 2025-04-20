@@ -1,0 +1,75 @@
+CREATE OR REPLACE PROCEDURE EResult2
+IS
+    TYPE Form31 IS TABLE OF FORM47%ROWTYPE INDEX BY PLS_INTEGER;
+    Form1 Form31;
+    TYPE C IS TABLE OF NUMBER INDEX BY PLS_INTEGER;
+    C1 C;
+    TYPE Form32 IS TABLE OF ElectionResults%ROWTYPE INDEX BY PLS_INTEGER;
+    Form2 Form32;
+    var1 NUMBER;
+    elec NUMBER;
+BEGIN
+    -- Retrieve the Constituency-wise maximum total votes into Form1
+    Select * BULK COLLECT into Form2 from ELECTIONRESULTS;
+    SELECT *
+    BULK collect into Form1
+    FROM form47
+    WHERE totalvotes = 
+    (SELECT Max(totalVotes)
+    FROM Form47 
+    Group by constituencyId); -- Ensure all non-aggregated columns are included in the GROUP BY clause
+    DBMS_OUTPUT.PUT_LINE(form1.count);
+    -- Calculate total votes per constituency and store in C1
+    SELECT SUM(totalvotes)
+    BULK COLLECT INTO C1
+    FROM Form47
+    GROUP BY ConstituencyID;
+
+    -- Loop through the elements of Form1 and process data
+    FOR i IN 1..Form1.COUNT LOOP
+        var1 := 0;
+        -- Find ElectionID based on ElectionType
+        SELECT ElectionID INTO elec
+        FROM Election
+        WHERE ElectionType = Form1(i).ElectionType;
+
+        -- Check if candidate result already exists in Form2
+       DBMS_OUTPUT.PUT_LINE('1');
+        FOR j IN 1..Form2.COUNT LOOP
+            DBMS_OUTPUT.PUT_LINE('1');
+            IF Form1(i).Candidateid = Form2(j).Candidateid
+               AND Form1(i).ElectionType = Form2(j).ElectionType
+               AND Form1(i).Constituencyid = Form2(j).Constituencyid
+            THEN 
+                Update ElectionResults
+                set VotesReceived = Form1(i).totalvotes, percentageofvotes = (Form1(i).totalvotes / C1(Form1(i).Constituencyid)) * 100
+                where Form1(i).Candidateid = Candidateid
+                     AND Form1(i).ElectionType = ElectionType
+                     AND Form1(i).Constituencyid = Constituencyid;
+                var1 := 1;
+                EXIT; -- Exit loop once match is found
+            END IF;
+        END LOOP;
+
+        -- Insert into ElectionResults if no duplicate candidate result found
+        IF var1 = 0 THEN
+            INSERT INTO ElectionResults (ResultId, ConstituencyID, CandidateID, VotesReceived, PercentageOfVotes, ElectionID, ElectionType)
+            VALUES (i, Form1(i).Constituencyid, Form1(i).CandidateID, Form1(i).totalvotes, (Form1(i).totalvotes / C1(Form1(i).Constituencyid)) * 100, elec, Form1(i).ElectionType);
+            Update Form47
+            set resultid = i
+            where Form1(i).Candidateid = Candidateid
+                  AND Form1(i).ElectionType = ElectionType
+                  AND Form1(i).Constituencyid = Constituencyid;
+        END IF;
+    END LOOP;
+
+    -- Commit the transaction if needed
+    COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Handle exceptions by displaying the error message
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+        -- Optionally, rollback the transaction if needed
+        ROLLBACK;
+END;

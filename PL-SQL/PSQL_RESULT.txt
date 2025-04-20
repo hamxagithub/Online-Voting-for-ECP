@@ -1,0 +1,107 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE PROCEDURE EResult(eid IN NUMBER)
+IS
+    TYPE Candidates IS TABLE OF NUMBER;
+    TYPE Etype IS TABLE OF VARCHAR2(50);
+    TYPE Received IS TABLE OF NUMBER; --6
+    TYPE Rejected IS TABLE OF NUMBER;
+    TYPE Form32 IS TABLE OF FORM45%ROWTYPE INDEX BY PLS_INTEGER;
+    Pres number;
+    CandidatesList Candidates := Candidates(); -- Initialize empty Candidates list
+    EtypeList Etype := Etype(); -- Initialize empty Election Type list
+    ReceivedVotes Received := Received(); -- Initialize empty Received Votes list
+    RejectedVotes Rejected := Rejected(); -- Initialize empty Rejected Votes list
+    Form3  Form32;
+    var1 number;
+BEGIN
+    SELECT * BULK COLLECT INTO Form3 FROM Form45;
+    -- Populate the lists with data from the Votes table for the specified election ID
+    FOR i IN (SELECT  C.CandidateID, C.ElectionType, P.Presiding
+              FROM PollingStations P inner join Candidates C
+              on P.ConstituencyID = C.ConstituencyID
+              where PollingStationId = eid
+              order by C.Candidateid asc)
+    LOOP
+        CandidatesList.EXTEND;
+        EtypeList.EXTEND;
+        ReceivedVotes.EXTEND;
+        RejectedVotes.EXTEND;
+        CandidatesList(CandidatesList.LAST) := i.CandidateID;
+        EtypeList(EtypeList.LAST) := i.ElectionType;
+        ReceivedVotes(ReceivedVotes.Last) :=0;
+        RejectedVotes(RejectedVotes.Last) := 0;
+        pres := i.presiding;
+    END LOOP;
+
+    FOR j IN (SELECT Distinct Candidateid, Count(*) as tttt
+              FROM Votes
+              where pollingstationid = eid
+              Group by candidateId
+              Order By CandidateId asc)
+    LOOP
+        
+        ReceivedVotes(j.Candidateid) := j.tttt ;
+        
+    END LOOP;
+    FOR k IN (SELECT Distinct O.Candidateid, Count(*) as tttt
+              FROM OnlineVotes O inner join Voters V
+              on O.VoterID = V.VoterID
+              where V.pollingstationid = eid
+              Group by candidateId
+              Order By CandidateId asc)
+    LOOP
+        
+        ReceivedVotes(k.Candidateid) := ReceivedVotes(k.Candidateid) +  k.tttt ;
+        
+    END LOOP;
+    FOR l IN (SELECT Distinct Candidateid, Count(*) as tttt
+              FROM Votes
+              where VoteIntegrity = 0 and pollingstationid = eid
+              Group by candidateid
+              Order By CandidateId asc)
+    LOOP
+        
+        RejectedVotes(l.Candidateid) := l.tttt ;
+        
+    END LOOP; 
+    FOR m IN (SELECT Distinct Candidateid, Count(*) as tttt
+              FROM OnlineVotes O inner join Voters V
+              on O.VoterID = V.VoterID
+              where O.VoteIntegrity = 0 and V.pollingstationid = eid
+              Group by candidateid
+              Order By CandidateId asc)
+    LOOP
+        
+        RejectedVotes(m.Candidateid) := RejectedVotes(m.Candidateid) + m.tttt ;
+        
+    END LOOP; 
+    -- Insert data into Form45 table using the populated lists
+    FOR n IN 1..CandidatesList.COUNT 
+    LOOP
+        var1 := 0;
+        For p in 1 .. Form3.count
+        loop 
+        if eid= Form3(p).pollingStationid and CandidatesList(n) = Form3(p).Candidateid and ETypeList(n) = Form3(p).ElectionType 
+        then 
+        Update Form45
+        set VotesReceived = ReceivedVotes(n), RejectedVotes = RejectedVotes(n)
+        where eid = pollingStationid and CandidatesList(n) = Candidateid and ETypeList(n) = ElectionType;
+        DBMS_OUTPUT.PUT_Line('1');
+        var1 := 1;
+        end if;
+        end loop;
+        --DBMS_OUTPUT.PUT_Line('1');
+        if var1 = 0
+        then
+        INSERT INTO Form45 (PollingStationID, CandidateID, ElectionType, VotesReceived, RejectedVotes, PollingOfficer, constituencyid)
+        VALUES (eid, CandidatesList(n), EtypeList(n), ReceivedVotes(n), RejectedVotes(n), pres, null);
+        end if;
+    END LOOP;
+    
+    DBMS_OUTPUT.PUT_LINE('Data inserted into Form45 successfully.');
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;

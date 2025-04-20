@@ -1,0 +1,15 @@
+Create or Replace Procedure EScheduler
+IS
+BEGIN
+  Insert into ElectionSchedule(CandidateID, ConstituencyID, ElectionID,ElectionType)
+  SELECT DISTINCT CE.CandidateID, C.ConstituencyID, CE.ElectionID, CE.ElectionType
+  FROM Constituencies C
+  INNER JOIN (
+    SELECT Ca.CandidateID, Ca.ConstituencyID, E.ElectionID, Ca.ElectionType
+    FROM Candidates Ca
+    INNER JOIN Election E ON Ca.ElectionType = E.ElectionType
+    where Ca.CandidateID not in (Select CandidateID from ElectionSchedule) 
+    or Ca.ConstituencyID not in (Select ConstituencyID from ElectionSchedule) 
+    or E.ElectionID not in (Select ElectionID from ElectionSchedule)  
+    ) CE ON C.ConstituencyID = CE.ConstituencyID;
+End;

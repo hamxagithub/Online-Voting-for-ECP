@@ -1,0 +1,66 @@
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Election Commision of Pakistan.exe.config
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Election Commision of Pakistan.exe
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Election Commision of Pakistan.pdb
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\EntityFramework.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Buffers.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Formats.Asn1.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Memory.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Text.Json.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.ValueTuple.dll
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\EntityFramework.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Buffers.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Formats.Asn1.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Memory.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Text.Json.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\bin\Debug\System.ValueTuple.xml
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.csproj.AssemblyReference.cache
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.csproj.SuggestedBindingRedirects.cache
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form1.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form3.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form4.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form5.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Properties.Resources.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl1.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl10.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl2.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl3.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl4.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl5.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl6.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl7.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl8.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl9.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.csproj.GenerateResource.cache
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.csproj.CopyComplete
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.exe
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election Commision of Pakistan.pdb
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form2.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form6.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form7.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl11.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl12.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl13.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl14.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl15.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Form8.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl17.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl18.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl19.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl20.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.UserControl21.resources
+C:\Users\ADMIN\source\repos\Election Commision of Pakistan\Election Commision of Pakistan\obj\Debug\Election_Commision_of_Pakistan.Home.resources

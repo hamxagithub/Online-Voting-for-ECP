@@ -1,0 +1,73 @@
+CREATE OR REPLACE PROCEDURE EResult1(Cid IN NUMBER)
+IS
+    TYPE Form32 IS TABLE OF FORM45%ROWTYPE INDEX BY PLS_INTEGER;
+    TYPE Form31 IS TABLE OF FORM47%ROWTYPE INDEX BY PLS_INTEGER;
+    TYPE total IS TABLE OF NUMBER INDEX BY PLS_INTEGER;
+    Form3 Form32;
+    Form1 Form31;
+    RO NUMBER;
+    var1 NUMBER;
+    TotalVotes total;
+BEGIN
+    -- Retrieve the ReturningOfficer for the specified ConstituencyID
+    SELECT ReturningOfficer INTO RO FROM Constituencies WHERE ConstituencyID = Cid;
+
+    -- Populate Form3 with data from the Form45 table for all records
+    SELECT * BULK COLLECT INTO Form3 FROM Form45;
+
+    -- Initialize TotalVotes array with default values
+    FOR i IN (SELECT DISTINCT CANDIDATEID FROM Form45) LOOP 
+        TotalVotes(i.candidateid) := 0; 
+    END LOOP;
+
+    -- Calculate total votes for each polling station
+    FOR i IN 1..Form3.COUNT LOOP 
+        TotalVotes(Form3(i).candidateID) := TotalVotes(Form3(i).candidateID) + 
+                                                 (Form3(i).VotesReceived - Form3(i).RejectedVotes);
+    END LOOP;
+
+    -- Populate Form1 with data from the Form47 table for all records
+    SELECT * BULK COLLECT INTO Form1 FROM Form47;
+
+    -- Loop through the elements of Form3 and insert/update data into Form47
+    FOR i IN (SELECT DISTINCT CandidateID, ElectionType FROM Form45) LOOP
+        var1 := 0;
+        FOR j IN 1..Form1.COUNT LOOP 
+            IF i.CandidateID = Form1(j).CandidateID AND 
+               i.ElectionType = Form1(j).ElectionType AND 
+               Cid = Form1(j).ConstituencyID THEN 
+
+                -- Update Form47 with the calculated total votes
+                UPDATE Form47
+                SET TotalVotes = TotalVotes(Form3(j).POLLINGSTATIONID)
+                WHERE CandidateID = i.CandidateID AND 
+                      ElectionType = i.ElectionType AND 
+                      ConstituencyID = Cid;
+                      
+                var1 := 1;
+            END IF;
+        END LOOP;
+        
+        IF var1 = 0 THEN
+            -- Insert new record into Form47 if no match is found
+            INSERT INTO Form47 (ConstituencyID, CandidateID, ElectionType, TotalVotes, ReturningOfficer, ResultID)
+            VALUES (Cid, i.CandidateID, i.ElectionType, TotalVotes(i.CandidateID), RO, NULL);
+            
+            -- Update Form45 to set the ConstituencyID
+            UPDATE Form45
+            SET ConstituencyID = Cid
+            WHERE CandidateID = i.CandidateID AND 
+                  ElectionType = i.ElectionType;
+        END IF;
+    END LOOP;
+
+    -- Commit the transaction
+    COMMIT;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Handle exceptions by displaying the error message
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+        -- Optionally, rollback the transaction if needed
+        ROLLBACK;
+END EResult1;

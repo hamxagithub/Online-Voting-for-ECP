@@ -1,0 +1,108 @@
+
+CREATE TABLE Voters (
+    VoterID int PRIMARY KEY,
+    Name varchar(255),
+    FName varchar(255),
+    CNIC varchar(15),
+    Address varchar(255),
+    ConstituencyID int,
+    foreign key (ConstituencyID) references Constituencies(ConstituencyID)
+);
+CREATE TABLE Candidates (
+    CandidateID int PRIMARY KEY,
+    Name varchar(255),
+    PartyAffiliation varchar(255),
+    ElectionType varchar(50),
+    ConstituencyID int,
+    foreign key (ConstituencyID) references Constituencies(ConstituencyID)
+);
+CREATE TABLE Constituencies (
+    ConstituencyID int PRIMARY KEY,
+    ConstituencyName varchar(255),
+    Province varchar(50),
+    District varchar(50)
+);
+CREATE TABLE PollingStations (
+    PollingStationID int PRIMARY KEY,
+    ConstituencyID int,
+    PollingStationName varchar(255),
+    Location varchar(255),
+    StaffCount int,
+    foreign key (ConstituencyID) references Constituencies(ConstituencyID)
+);
+
+CREATE TABLE ElectionSchedule (
+    ElectionID int PRIMARY KEY,
+    ElectionType varchar(50),
+    ElectionDate DATE,
+    NominationDeadline DATE,
+    PollingDate DATE
+);
+
+
+CREATE TABLE Votes (
+    VoteID int PRIMARY KEY,
+    VoterID int,
+    CandidateID int,
+    PollingStationID int,
+    VoteDateTime DATETIME,
+    foreign key (VoterID) references Voters(VoterID),
+    foreign key (CandidateID) references Candidates(CandidateID),
+    foreign key (PollingStationID) references PollingStations(PollingStationID)
+);
+
+CREATE TABLE ElectionResults (
+    ResultID int PRIMARY KEY,
+    ElectionID int,
+    ConstituencyID int,
+    CandidateID int,
+    VotesReceived int,
+    PercentageOfVotes DECIMAL(5,2),
+    foreign key (ElectionID) references ElectionSchedule(ElectionID),
+    foreign key (ConstituencyID) references Constituencies(ConstituencyID),
+    foreign key (CandidateID) references Candidates(CandidateID)
+);
+
+CREATE TABLE PoliticalParties (
+    PartyID int PRIMARY KEY,
+    PartyName varchar(255),
+    Leader varchar(255),
+    Headquarters varchar(255)
+);
+
+CREATE TABLE ElectionOfficials (
+    OfficialID int PRIMARY KEY,
+    Name varchar(255),
+    Designation varchar(255),
+    ContactNumber varchar(20)
+);
+
+CREATE TABLE OnlineVotes (
+    VoteID int PRIMARY KEY,
+    VoterID int,
+    CandidateID int,
+    VoteDateTime DATETIME,
+    IP_Address varchar(50),
+    foreign key (VoterID) references Voters(VoterID),
+    foreign key (CandidateID) references Candidates(CandidateID)
+);
+
+
+CREATE TABLE Form45 (
+    Form45ID int PRIMARY KEY,
+    PollingStationID int,
+    CandidateID int,
+    VotesReceived int,
+    RejectedVotes int,
+    foreign key (PollingStationID) references PollingStations(PollingStationID),
+    foreign key (CandidateID) references Candidates(CandidateID)
+);
+
+CREATE TABLE Form47 (
+    Form47ID int PRIMARY KEY,
+    ConstituencyID int,
+    CandidateID int,
+    TotalVotes int,
+    foreign key (ConstituencyID) references Constituencies(ConstituencyID),
+    foreign key (CandidateID) references Candidates(CandidateID)
+);
